@@ -14,12 +14,29 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-  return view('welcome');
+    return view('login');
+});
+
+Route::get('/home', function () {
+    return view('homePage');
 });
 
 
-Route::get('/greeting', function () {
-    return view('blog_greeting');
+Route::get('/register', function () {
+    return view('register');
 });
+
+Route::get('/forget_password', function () {
+    return view('forgot_password');
+});
+
+Route::get('/404', function () {
+    return view('404');
+});
+
+Route::get('/500', function () {
+    return view('500');
+});
+
 
 
