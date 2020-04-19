@@ -54,12 +54,6 @@
 
   @yield('content')
   
-  @yield('forget_password')
-  @yield('home_page')
-  @yield('404')
-  @yield('500')
-
-
    <!-- CoreUI and necessary plugins-->
     <script src="vendors/@coreui/coreui/js/coreui.bundle.min.js"></script>
     <!--[if IE]><!-->
