@@ -52,8 +52,8 @@
     @yield('homepage_style')
   </head>
 
-  @yield('login')
-  @yield('register')
+  @yield('content')
+  
   @yield('forget_password')
   @yield('home_page')
   @yield('404')

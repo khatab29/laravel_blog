@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<!--
-* CoreUI - Free Bootstrap Admin Template
-* @version v3.0.0
-* @link https://coreui.io
-* Copyright (c) 2020 creativeLabs Łukasz Holeczek
-* Licensed under MIT (https://coreui.io/license)
--->
 @extends('layout')
-
-@section('register')
+@section('content')
   <body class="c-app flex-row align-items-center">
     <div class="container">
       <div class="row justify-content-center">
@@ -45,15 +36,15 @@
                     </svg></span></div>
                 <input class="form-control" type="password" placeholder="Repeat password">
               </div>
-              <button class="btn btn-block btn-success" type="button">Create Account</button>
+              <button class="btn btn-block btn-success" type="button" onclick="window.location='/home'">Home Page</button>
             </div>
             <div class="card-footer p-4">
               <div class="row">
                 <div class="col-6">
-                  <button class="btn btn-block btn-facebook" type="button"><span>facebook</span></button>
+                  <button class="btn btn-block btn-facebook" type="button" onclick="window.location = '/500'"><span>505</span></button>
                 </div>
                 <div class="col-6">
-                  <button class="btn btn-block btn-twitter" type="button"><span>twitter</span></button>
+                  <button class="btn btn-block btn-twitter" type="button" onclick="window.location = '/404'"><span>404</span></button>
                 </div>
               </div>
             </div>

@@ -9,7 +9,7 @@
 
 @extends('layout')
 
-@section('500')
+@section('content')
 
   <body class="c-app flex-row align-items-center">
     <div class="container">

@@ -1,6 +1,5 @@
-
 @extends('layout')
-@section('login')
+@section('content')
   <body class="c-app flex-row align-items-center">
     <div class="container">
       <div class="row justify-content-center">

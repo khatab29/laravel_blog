@@ -2,7 +2,7 @@
 @section('homepage_style')
 <link href="vendors/@coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet">
 @endsection
-@section('home_page')
+@section('content')
   <body class="c-app">
     <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
       <div class="c-sidebar-brand d-lg-down-none">

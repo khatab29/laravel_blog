@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<!--
-* CoreUI - Free Bootstrap Admin Template
-* @version v3.0.0
-* @link https://coreui.io
-* Copyright (c) 2020 creativeLabs Łukasz Holeczek
-* Licensed under MIT (https://coreui.io/license)
--->
 @extends('layout')
-
-@section('forget_password')
+@section('content')
   <body class="c-app flex-row align-items-center">
     <div class="container">
       <div class="row justify-content-center">
@@ -32,7 +23,7 @@
    
                 <input class="form-control" type="text" placeholder="Email">
               </div>
-              <button class="btn btn-block btn-success" type="button">Get New Password</button>
+              <button class="btn btn-block btn-success" type="button" onclick="window.location='/'">Get New Password</button>
             </div>
           
           </div>
