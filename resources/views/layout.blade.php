@@ -49,7 +49,7 @@
       // Bootstrap ID
       gtag('config', 'UA-118965717-5');
     </script>
-    @yield('homepage_style')
+    @yield('head_style')
   </head>
 
   @yield('content')
@@ -59,7 +59,7 @@
     <!--[if IE]><!-->
     <script src="vendors/@coreui/icons/js/svgxuse.min.js"></script>
     <!--<![endif]-->
-   @yield('homepage_script')
+   @yield('footer_script')
 
   </body>
 </html>

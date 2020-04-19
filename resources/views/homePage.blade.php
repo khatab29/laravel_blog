@@ -1,5 +1,5 @@
 @extends('layout')
-@section('homepage_style')
+@section('head_style')
 <link href="vendors/@coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet">
 @endsection
 @section('content')
@@ -875,7 +875,7 @@
     </div>
 
 
-    @section('homepage_script')
+    @section('footer_script')
     <script src="/vendors/@coreui/chartjs/js/coreui-chartjs.bundle.js"></script>
     <script src="/vendors/@coreui/utils/js/coreui-utils.js"></script>
     <script src="/js/main.js"></script>
