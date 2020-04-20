@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<!--
-* CoreUI - Free Bootstrap Admin Template
-* @version v3.0.0
-* @link https://coreui.io
-* Copyright (c) 2020 creativeLabs Łukasz Holeczek
-* Licensed under MIT (https://coreui.io/license)
--->
-
 @extends('layout')
-
 @section('content')
 
   <body class="c-app flex-row align-items-center">

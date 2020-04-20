@@ -23,7 +23,7 @@
    
                 <input class="form-control" type="text" placeholder="Email">
               </div>
-              <button class="btn btn-block btn-success" type="button" onclick="window.location='/'">Get New Password</button>
+              <a class="btn btn-block btn-success" href="{{route('admin')}}">Get New Password</a>
             </div>
           
           </div>

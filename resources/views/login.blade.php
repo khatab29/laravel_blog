@@ -9,26 +9,29 @@
               <div class="card-body">
                 <h1>Login</h1>
                 <p class="text-muted">Sign In to your account</p>
+
                 <div class="input-group mb-3">
                   <div class="input-group-prepend"><span class="input-group-text">
                       <svg class="c-icon">
-                        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-user"></use>
+                        <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-user')}}"></use>
                       </svg></span></div>
                   <input class="form-control" type="text" placeholder="Username">
                 </div>
+
                 <div class="input-group mb-4">
                   <div class="input-group-prepend"><span class="input-group-text">
                       <svg class="c-icon">
-                        <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-lock-locked"></use>
+                        <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-lock-locked')}}"></use>
                       </svg></span></div>
                   <input class="form-control" type="password" placeholder="Password">
                 </div>
                 <div class="row">
                   <div class="col-6">
-                    <button class="btn btn-primary px-4" type="button" onclick="window.location='/home'">Login</button>
+                    
+                      <a class="btn btn-primary px-4" href="{{route('admin')}}">Login</a>
                   </div>
                   <div class="col-6 text-right">
-                    <button class="btn btn-link px-0" type="button" onclick="window.location='/forget_password'">Forgot password?</button> 
+                    <a href="{{route('admin.forgotPassword')}}">Forgot password?</a>
                   </div>
                 </div>
               </div>
@@ -38,7 +41,7 @@
                 <div>
                   <h2>Sign up</h2>
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                  <button class="btn btn-lg btn-outline-light mt-3" type="button" onclick="window.location='/register'">Register Now!</button>
+                  <a class="btn btn-lg btn-outline-light mt-3" href="{{route('admin.register')}}">Register Now!</a>
                 </div>
               </div>
             </div>
