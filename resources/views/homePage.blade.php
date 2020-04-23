@@ -3,7 +3,7 @@
 <link href="{{asset('vendors/@coreui/chartjs/css/coreui-chartjs.css')}}" rel="stylesheet">
 @endsection
 @section('content')
-  <body class="c-app">
+  
     <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
       <div class="c-sidebar-brand d-lg-down-none">
         <svg class="c-sidebar-brand-full" width="118" height="46" alt="CoreUI Logo">
@@ -216,6 +216,8 @@
           </ol>
         </div>
       </header>
+
+      
       <div class="c-body">
         <main class="c-main">
           <div class="container-fluid">
