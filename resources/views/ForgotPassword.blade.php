@@ -1,5 +1,19 @@
 @extends('layout')
 @section('content')
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="{{route(Route::currentRouteName(),'en')}}">English</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{route(Route::currentRouteName(),'ar')}}">Arabic</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
   <div class="c-app flex-row align-items-center">
     <div class="container">
       <div class="row justify-content-center">

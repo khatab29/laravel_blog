@@ -52,10 +52,7 @@
     @yield('head_style')
   </head>
   <body class="c-app">
-    <ul class="navbar-nav ml-auto">
-    <a href="{{route(Route::currentRouteName(),'ar')}}">arabic</a>
-    <a href="{{route(Route::currentRouteName(),'en')}}">english</a>
-    </ul>
+    
 
   
   @yield('content')

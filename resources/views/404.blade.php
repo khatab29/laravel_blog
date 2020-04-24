@@ -23,3 +23,9 @@
   </div>
       
    @endsection
+
+
+   <ul class="navbar-nav ml-auto">
+    <a href="{{route(Route::currentRouteName(),'ar')}}">arabic</a>
+    <a href="{{route(Route::currentRouteName(),'en')}}">english</a>
+    </ul>
