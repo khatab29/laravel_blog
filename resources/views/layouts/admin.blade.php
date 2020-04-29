@@ -6,7 +6,7 @@
 * Copyright (c) 2020 creativeLabs Łukasz Holeczek
 * Licensed under MIT (https://coreui.io/license)
 -->
-<html lang="en">
+<html dir="{{__('ltr')}}" lang="{{__('en')}}">
   <head>
     <base href="./">
     <meta charset="utf-8">
@@ -15,8 +15,8 @@
     <meta name="description" content="CoreUI - Open Source Bootstrap Admin Template">
     <meta name="author" content="Łukasz Holeczek">
     <meta name="keyword" content="Bootstrap,Admin,Template,Open,Source,jQuery,CSS,HTML,RWD,Dashboard">
-    <title>laravel Admin</title>
-    <link rel="apple-touch-icon" sizes="57x57" href=" {{asset('assets/favicon/apple-icon-57x57.png') }}">
+    <title>CoreUI Free Bootstrap Admin Template</title>
+   <link rel="apple-touch-icon" sizes="57x57" href=" {{asset('assets/favicon/apple-icon-57x57.png') }}">
     <link rel="apple-touch-icon" sizes="60x60" href="{{asset('assets/favicon/apple-icon-60x60.png')}}">
     <link rel="apple-touch-icon" sizes="72x72" href="{{asset('assets/favicon/apple-icon-72x72.png')}}">
     <link rel="apple-touch-icon" sizes="76x76" href="{{asset('assets/favicon/apple-icon-76x76.png')}}">
@@ -49,20 +49,18 @@
       // Bootstrap ID
       gtag('config', 'UA-118965717-5');
     </script>
-    @yield('head_style')
   </head>
-  <body class="c-app">
-    
+  <body class="c-app flex-row align-items-center">
 
-  
-  @yield('content')
-  
-   <!-- CoreUI and necessary plugins-->
-    <script src="{{asset('vendors/@coreui/coreui/js/coreui.bundle.min.js')}}"></script>
+
+    @yield('content')
+    
+    <!-- CoreUI and necessary plugins-->
+    <script src="vendors/@coreui/coreui/js/coreui.bundle.min.js"></script>
     <!--[if IE]><!-->
-    <script src="{{asset('vendors/@coreui/icons/js/svgxuse.min.js')}}"></script>
+    <script src="vendors/@coreui/icons/js/svgxuse.min.js"></script>
     <!--<![endif]-->
-   @yield('footer_script')
+
 
   </body>
 </html>

@@ -15,8 +15,13 @@ class Setlanguages
      */
     public function handle($request, Closure $next)
     {
-
-        \App::setlocale($request->lang);
+        //$lang = array('','en', 'ar' );
+        //if (in_array($request->lang, $lang)) {
+            \App::setlocale($request->lang);
+        //}else{
+            //return redirect('admin.404');
+       // }
+        
         return $next($request);
     }
 }

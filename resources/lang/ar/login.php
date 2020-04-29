@@ -1,10 +1,11 @@
 <?php
 
 return [
-    'Sign up' =>'سجل',
-    'Register Now'=> 'سجل الان',
-    'Login'=>'تسجيل الدخول',
+    'Sign up' =>'انشاء حساب',
+    'Register Now!'=> 'سجل الان!',
     'Forgot password?'=>'هل نسيت كلمة المرور؟',
     'Sign In to your account'=>'سجل للدخول لحسابك',
+    'Login'=>'تسجيل الدخول',
+	
 ];
 
