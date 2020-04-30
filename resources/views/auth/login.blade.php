@@ -6,7 +6,7 @@
       <div class="row justify-content-center">
         <div class="col-md-8">
 
-            <ul class="navbar-nav">
+      <ul class="navbar-nav">
       <li class="nav-item">
         <a  href="{{route(Route::currentRouteName(),'en')}}">English</a>|
         <a  href="{{route(Route::currentRouteName(),'ar')}}">العربية</a>
@@ -15,7 +15,7 @@
           <div class="card-group">
             <div class="card p-4">
               <div class="card-body">
-                <h1>{{__('login.Login')}}</h1>
+                <h1>{{__('Login')}}</h1>
                 <p class="text-muted">{{__('login.Sign In to your account')}}</p>
 
 <form method="POST" action="{{ route('login',app()->getlocale()) }}">
@@ -59,7 +59,7 @@
 
 <div class="row">
 <div class="col-6">
-<button class="btn btn-primary px-4" type="submit">{{__('login.Login')}}</button>
+<button class="btn btn-primary px-4" type="submit">{{__('Login')}}</button>
 </div>
 <div class="col-6 text-right">
 @if (Route::has('password.request'))

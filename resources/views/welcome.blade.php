@@ -68,12 +68,12 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home',app()->getlocale()) }}">Home</a>
+                        <a href="{{ url('/home',app()->getlocale()) }}">{{__('Home')}}</a>
                     @else
-                        <a href="{{ route('login',app()->getlocale()) }}">Login</a>
+                        <a href="{{ route('login',app()->getlocale()) }}">{{__('Login')}}</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register',app()->getlocale()) }}">Register</a>
+                            <a href="{{ route('register',app()->getlocale()) }}">{{__('Register')}}</a>
                         @endif
                     @endauth
                 </div>
@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    {{__('Laravel')}}
                 </div>
 
                 <div class="links">

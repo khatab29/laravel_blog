@@ -90,10 +90,10 @@
             <div class="card-footer p-4">
               <div class="row">
                 <div class="col-6">
-                  <a class="btn btn-block btn-primary" href="{{route('login',app()->getlocale())}}"><span>{{__('register.Login')}}</span></a>
+                  <a class="btn btn-block btn-primary" href="{{route('login',app()->getlocale())}}"><span>{{__('Login')}}</span></a>
                 </div>
                 <div class="col-6">
-                  <a class="btn btn-block btn-primary" href="{{ route('password.request',app()->getlocale()) }}" ><span>{{__('register.forgot your password?')}}</span></a>
+                  <a class="btn btn-block btn-primary" href="{{ route('password.request',app()->getlocale()) }}" ><span>{{__('Forgot Your Password?')}}</span></a>
                 </div>
               </div>
             </div>
