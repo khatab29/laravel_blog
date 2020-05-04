@@ -10,10 +10,6 @@ use App\User;
 
 
 
-
-
-
-
 class LoginController extends Controller
 {
 
@@ -34,16 +30,14 @@ class LoginController extends Controller
         }
         if ( ! User::where('email', $request->email)->first() ) {
             return redirect()->back()
-                ->withInput($request->only('email', 'remember'))
-                ->withErrors([
-                    'email' => [trans('auth.email')],
+                ->withInput()
+                ->withErrors(['email' => [trans('auth.email')],
                 ]);
         }
         if ( ! User::where('email', $request->email)->where('password', $request->password)->first() ) {
             return redirect()->back()
-                ->withInput($request->only('password', 'remember'))
-                ->withErrors([
-                    'password' => [trans('auth.password')],
+                ->withInput()
+                ->withErrors(['password' => [trans('auth.password')],
                 ]);
         }  
     }
