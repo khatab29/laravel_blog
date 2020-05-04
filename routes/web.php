@@ -14,21 +14,34 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-
-Route::redirect('/', App::getLocale());
-
+Route::get('/{lang?}', 'HomeController@home')->name('homePage')->where('lang','ar|en') ;
 Route::group(['prefix'=>'{lang}'], function (){
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/register','Auth\RegisterController@create')->name('register');
+Route::post('register','Auth\RegisterController@store')->name('register.post');
+Route::get('/login','Auth\LoginController@create')->name('login');
+Route::post('login','Auth\LoginController@login')->name('login.post');
+Route::post('logout','Auth\LoginController@logout')->name('logout');
+Route::get('/reset',function () {
+    return view('auth.passwords.email');
+})->name('password.email');
 
-Route::get('/', function () {
-    return view('welcome');
+
+
 });
 
 
+
+
+
+
+/*
+Route::prefix('{lang?}')->middleware('locale')->group(function() {
+Route::get('/', function () {return view('welcome');})->name('home');
+});
+Route::prefix('{lang}')->middleware('locale')->group(function() {
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
-
-
 Route::get('/404', function () {
     return view('404');
 })->name('admin.404');
@@ -41,6 +54,36 @@ Route::get('/500', function () {
 
 
 });
+
+
+
+
+Route::prefix('{lang?}')->middleware('locale')->group(function() {
+Route::get('/', function () {return view('welcome');})->name('home');
+});
+
+Route::prefix('{lang}')->middleware('locale')->group(function() {
+
+
+    Route::get('/login', 'SessionsController@create')->name('login');
+    Route::post('login', 'SessionsController@store')->name('login.post');
+    Route::get('/logout', 'SessionsController@destroy')->name('logout');
+
+    Route::get('/register', 'RegisterController@create')->name('register');
+    Route::post('register', 'RegisterController@store')->name('register.post');
+
+
+    Route::get('/reset',array( 'as'=>'reset',function () {
+        return view('auth.reset');
+    }));
+
+});
+
+
+
+
+
+
 
 
 

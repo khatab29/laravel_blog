@@ -66,20 +66,27 @@
     <body>
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
+
+
+
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home',app()->getlocale()) }}">{{__('Home')}}</a>
+
+
+                    
+                        <a href="{{ route('home',['lang' =>app()->getlocale()]) }}">{{__('Home')}}</a>
                     @else
-                        <a href="{{ route('login',app()->getlocale()) }}">{{__('Login')}}</a>
+                        <a href="{{ route('login',['lang' => app()->getlocale()]) }}">{{__('Login')}}</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register',app()->getlocale()) }}">{{__('Register')}}</a>
+                            <a href="{{ route('register',['lang' =>app()->getlocale()]) }}">{{__('Register')}}</a>
                         @endif
                     @endauth
                 </div>
             @endif
 
             <div class="content">
+                
                 <div class="title m-b-md">
                     {{__('Laravel')}}
                 </div>
@@ -94,6 +101,8 @@
                     <a href="https://vapor.laravel.com">Vapor</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
+
+                
             </div>
         </div>
     </body>

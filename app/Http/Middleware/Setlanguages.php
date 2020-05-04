@@ -3,6 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\App;
 
 class Setlanguages
 {
@@ -13,15 +15,40 @@ class Setlanguages
      * @param  \Closure  $next
      * @return mixed
      */
+
+    
     public function handle($request, Closure $next)
     {
-        //$lang = array('','en', 'ar' );
-        //if (in_array($request->lang, $lang)) {
-            \App::setlocale($request->lang);
-        //}else{
-            //return redirect('admin.404');
-       // }
+        //if (!in_array($request->lang, config('app.locales '))) {
+            //App::setlocale($request->cookie('lang')?: config('app.fallback_locale'));
+       //}
+             //$localCookie = cookie()->forever('lang', $request->lang );
+             App::setlocale($request->lang);
         
-        return $next($request);
+              return $next($request);
     }
+
+
+
+
+    /*
+        public function handle($request, Closure $next)
+        {
+            if ($request->method() === 'GET') {
+                $segment = $request->segment(1);
+
+                if (!in_array($segment, config('app.locales'))) {
+                    $segments = $request->segments();
+                    $fallback = $request->cookie('lang')?: config('app.fallback_locale');
+                    $segments = Arr::prepend($segments, $fallback);
+
+                    return redirect()->to(implode('/', $segments));
+                }
+
+                $cookie=cookie()->forever('lang', $segment );
+                app()->setLocale($segment);
+            }
+
+            return $next($request)->cookie($cookie);
+        }*/
 }

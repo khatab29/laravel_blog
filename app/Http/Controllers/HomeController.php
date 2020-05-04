@@ -13,7 +13,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
     /**
@@ -24,5 +24,15 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    public function home($lang = null)
+    {
+
+        if(!in_array($lang , config('app.locales'))){
+            \App::setlocale(request()->cookie('lang')?: config('app.fallback_locale'));
+        }
+        
+                  return view('welcome');
     }
 }

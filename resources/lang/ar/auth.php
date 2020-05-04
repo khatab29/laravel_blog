@@ -13,9 +13,10 @@ return [
     |
     */
 
-    'failed' => 'These credentials do not match our records.',
-    'email' => 'Invalied Email Address',
-    'password' => 'Invalied Password',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'failed' => 'بيانات الاعتماد هذه لا تتطابق مع سجلاتنا.',
+    'email' => 'البريد الالكترونى غير صحيح',
+    'password' => ' كلمة المرور غير صحيحة',
+    'throttle' => 'محاولات تسجيل دخول كثيرة. يرجى المحاولة مرة أخرى بعد: ثوانٍ
+    .',
 
 ];

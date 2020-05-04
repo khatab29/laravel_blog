@@ -23,7 +23,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/',app()->getlocale()) }}">
+                <a class="navbar-brand" href="{{ url('/',['lang' =>app()->getlocale()]) }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -41,11 +41,11 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login',app()->getlocale()) }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login',['lang' =>app()->getlocale()]) }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register',app()->getlocale()) }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register',['lang' =>app()->getlocale()]) }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
@@ -61,7 +61,7 @@
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout',app()->getlocale()) }}" method="POST" style="display: none;">
+                                    <form id="logout-form" action="{{ route('logout',['lang' =>app()->getlocale()]) }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
                                 </div>
