@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/{lang?}', 'HomeController@home')->name('homePage')->where('lang','ar|en') ;
+Route::get('/{lang?}', 'HomeController@home')->name('welcome')->where('lang','ar|en') ;
 Route::group(['prefix'=>'{lang}'], function (){
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/register','Auth\RegisterController@create')->name('register');

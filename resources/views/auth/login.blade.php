@@ -59,7 +59,7 @@
 <button class="btn btn-primary px-4" type="submit">{{__('Login')}}</button>
 </div>
 <div class="col-6 text-right">
-  <a class="btn btn-block btn-primary" href="{{ route('password.email',['lang' =>app()->getlocale()]) }}" ><span>{{__('Forgot Your Password?')}}</span></a>
+  <a  href="{{ route('password.email',['lang' =>app()->getlocale()]) }}" ><span>{{__('Forgot Your Password?')}}</span></a>
 
 </div>
 </div>

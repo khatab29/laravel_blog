@@ -30,7 +30,7 @@ class LoginController extends Controller
         $validated = $request->validated();
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            return redirect()->intended(route('homePage'));
+            return redirect()->intended(route('welcome'));
         }
         if ( ! User::where('email', $request->email)->first() ) {
             return redirect()->back()
@@ -39,7 +39,7 @@ class LoginController extends Controller
                     'email' => [trans('auth.email')],
                 ]);
         }
-        if ( ! User::where('email', $request->email)->where('password', bcrypt($request->password))->first() ) {
+        if ( ! User::where('email', $request->email)->where('password', $request->password)->first() ) {
             return redirect()->back()
                 ->withInput($request->only('password', 'remember'))
                 ->withErrors([
@@ -52,24 +52,12 @@ class LoginController extends Controller
     protected function logout()
     {
         Auth::logout();
-        return redirect(route('homePage'));
+        return redirect(route('welcome'));
             
     }
 
 
     
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
