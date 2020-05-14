@@ -19,10 +19,7 @@ class Setlanguages
     
     public function handle($request, Closure $next)
     {
-        //if (!in_array($request->lang, config('app.locales '))) {
-            //App::setlocale($request->cookie('lang')?: config('app.fallback_locale'));
-       //}
-             //$localCookie = cookie()->forever('lang', $request->lang );
+        
              App::setlocale($request->lang);
         
               return $next($request);

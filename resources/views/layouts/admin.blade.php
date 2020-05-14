@@ -49,17 +49,19 @@
       // Bootstrap ID
       gtag('config', 'UA-118965717-5');
     </script>
+    @yield('homepage-style')
   </head>
-  <body class="c-app flex-row align-items-center">
 
 
     @yield('content')
     
     <!-- CoreUI and necessary plugins-->
-    <script src="vendors/@coreui/coreui/js/coreui.bundle.min.js"></script>
+    <script src="{{asset('vendors/@coreui/coreui/js/coreui.bundle.min.js')}}"></script>
     <!--[if IE]><!-->
-    <script src="vendors/@coreui/icons/js/svgxuse.min.js"></script>
+    <script src="{{asset('vendors/@coreui/icons/js/svgxuse.min.js')}}"></script>
     <!--<![endif]-->
+    @yield('homepage-js')
+    @yield('posts-js')
 
 
   </body>

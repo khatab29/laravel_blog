@@ -1,22 +1,28 @@
 @extends('layouts.admin')
 @section('content')
+<body class="c-app flex-row align-items-center">
+
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-6">
 
-<ul class="navbar-nav">
-<li class="nav-item">
-<a  href="{{route(Route::currentRouteName(),'en')}}">English</a>|
-<a  href="{{route(Route::currentRouteName(),'ar')}}">العربية</a>
-</li>
-</ul>
+          <ul>
+            @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                <li>
+                    <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                        {{ $properties['native'] }}
+                    </a>
+                </li>
+            @endforeach
+        </ul>
+
           <div class="card mx-4">
             <div class="card-body p-4">
               <h1>{{__('register.Register')}}</h1>
               <p class="text-muted">{{__('register.Create your account')}}</p>
 
 
-<form method="POST" action="{{ route('register.post',['lang' =>app()->getlocale()]) }}">
+<form method="POST" action="{{ route('register.post') }}">
 @csrf
 
 <div class="input-group mb-3">
@@ -77,10 +83,10 @@
             <div class="card-footer p-4">
               <div class="row">
                 <div class="col-6">
-                  <a class="btn btn-block btn-primary" href="{{route('login',['lang' =>app()->getlocale()])}}"><span>{{__('Login')}}</span></a>
+                  <a class="btn btn-block btn-primary" href="{{route('login')}}"><span>{{__('Login')}}</span></a>
                 </div>
                 <div class="col-6">
-                  <a class="btn btn-block btn-primary" href="{{ route('password.email',['lang' =>app()->getlocale()]) }}" ><span>{{__('Forgot Your Password?')}}</span></a>
+                  <a class="btn btn-block btn-primary" href="{{ route('password.email') }}" ><span>{{__('Forgot Your Password?')}}</span></a>
                 </div>
               </div>
             </div>

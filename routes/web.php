@@ -13,15 +13,50 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::group(
+    [
+        'prefix' => LaravelLocalization::setLocale(),
+        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+    ], function(){
 
+
+    Route::get('/', function () {return view('Welcome');})->name('welcome');
+    Route::get('/homepage',function () {return view('homepage');})->name('homapage');
+    Route::get('/home', 'HomeController@index')->name('home');
+
+    Route::get('/register','Auth\RegisterController@create')->name('register');
+    Route::post('register','Auth\RegisterController@store')->name('register.post');
+    
+    Route::get('/login','Auth\LoginController@create')->name('login');
+    Route::post('login','Auth\LoginController@login')->name('login.post');
+    Route::post('logout','Auth\LoginController@logout')->name('logout');
+    Route::get('/reset',function () {return view('auth.passwords.email'); })->name('password.email');
+    
+    Route::get('/posts','PostController@index')->name('posts'); 
+    Route::get('/posts/{post}','PostController@show')->name('posts.show');  
+    
+
+
+    });
+
+
+
+/*
 Route::get('/{lang?}', 'HomeController@home')->name('welcome')->where('lang','ar|en') ;
 Route::group(['prefix'=>'{lang}'], function (){
+
+   
+    Route::get('/posts','PostController@index')->name('posts'); 
+    Route::get('/posts/{id}','PostController@show')->name('posts.show');  
+
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/register','Auth\RegisterController@create')->name('register');
 Route::post('register','Auth\RegisterController@store')->name('register.post');
 Route::get('/login','Auth\LoginController@create')->name('login');
 Route::post('login','Auth\LoginController@login')->name('login.post');
 Route::post('logout','Auth\LoginController@logout')->name('logout');
+
+
 Route::get('/reset',function () {
     return view('auth.passwords.email');
 })->name('password.email');
@@ -35,7 +70,7 @@ Route::get('/reset',function () {
 
 
 
-/*
+
 Route::prefix('{lang?}')->middleware('locale')->group(function() {
 Route::get('/', function () {return view('welcome');})->name('home');
 });

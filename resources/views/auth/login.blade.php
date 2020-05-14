@@ -1,24 +1,33 @@
 @extends('layouts.admin')
 @section('content')
 
+<body class="c-app flex-row align-items-center">
 
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-md-8">
 
-      <ul class="navbar-nav">
-      <li class="nav-item">
-        <a  href="{{route(Route::currentRouteName(),'en')}}">English</a>|
-        <a  href="{{route(Route::currentRouteName(),'ar')}}">العربية</a>
-      </li>
-    </ul>
+
+
+          <ul>
+            @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                <li>
+                    <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                        {{ $properties['native'] }}
+                    </a>
+                </li>
+            @endforeach
+        </ul>
+
+
+
           <div class="card-group">
             <div class="card p-4">
               <div class="card-body">
                 <h1>{{__('Login')}}</h1>
                 <p class="text-muted">{{__('login.Sign In to your account')}}</p>
 
-<form method="POST" action="{{ route('login',['lang' =>app()->getlocale()]) }}">
+<form method="POST" action="{{ route('login') }}">
 @csrf
 
 <div class="input-group mb-3">
@@ -59,7 +68,7 @@
 <button class="btn btn-primary px-4" type="submit">{{__('Login')}}</button>
 </div>
 <div class="col-6 text-right">
-  <a  href="{{ route('password.email',['lang' =>app()->getlocale()]) }}" ><span>{{__('Forgot Your Password?')}}</span></a>
+  <a  href="{{ route('password.email') }}" ><span>{{__('Forgot Your Password?')}}</span></a>
 
 </div>
 </div>
@@ -71,7 +80,7 @@
                 <div>
                   <h2>{{__('login.Sign up')}}</h2>
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                  <a class="btn btn-lg btn-outline-light mt-3" href="{{route('register',['lang' =>app()->getlocale()])}}">{{__('login.Register Now!')}}</a>
+                  <a class="btn btn-lg btn-outline-light mt-3" href="{{route('register')}}">{{__('login.Register Now!')}}</a>
                    
               </div>
             </div>

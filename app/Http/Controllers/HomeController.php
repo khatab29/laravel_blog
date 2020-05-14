@@ -26,13 +26,5 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function home($lang = null)
-    {
-
-        if(!in_array($lang , config('app.locales'))){
-            \App::setlocale(request()->cookie('lang')?: config('app.fallback_locale'));
-        }
-        
-                  return view('welcome');
-    }
+    
 }

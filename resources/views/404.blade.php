@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 @section('content')
+<body class="c-app flex-row align-items-center">
+
     <div class="container">
       <ul class="navbar-nav">
       <li class="nav-item">
