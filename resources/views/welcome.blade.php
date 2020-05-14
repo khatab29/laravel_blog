@@ -67,7 +67,7 @@
 
 
         
-        
+        <div class=" position-ref sticky-top">
             <ul>
                 @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                     <li>
@@ -77,46 +77,31 @@
                     </li>
                 @endforeach
             </ul>
+        </div>
     
         
         <div class="flex-center position-ref full-height">
             
             @if (Route::has('login'))
                 <div class="top-right links">
-                    
                     @auth
-
-
-                    
-                        <a href="{{ route('home',['lang' =>app()->getlocale()]) }}">{{__('Home')}}</a>
+                        <a href="{{ route('home') }}">{{__('Home')}}</a>
                     @else
-                        <a href="{{ route('login',['lang' => app()->getlocale()]) }}">{{__('Login')}}</a>
+                        <a href="{{ route('login') }}">{{__('Login')}}</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register',['lang' =>app()->getlocale()]) }}">{{__('Register')}}</a>
+                            <a href="{{ route('register') }}">{{__('Register')}}</a>
                         @endif
                     @endauth
                 </div>
             @endif
-            
-
             <div class="content">
-                
-                
                 <div class="title m-b-md">
                     {{__('Laravel')}}
                 </div>
-
                 <div class="links">
-                    
-                    
                     <a href="{{route('homapage')}}">Home Page</a>
-                    
-                
-                    
                 </div>
-
-                
             </div>
         </div>
         
