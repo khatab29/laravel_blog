@@ -12,7 +12,7 @@
           <div class="card-group">
             <div class="card p-4">
 
-              <div class="dropdown show float">
+              <div class="dropdown show float-left">
                 <a class="btn btn-info  btn-sm dropdown-toggle" href="#" 
                 role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Languages

@@ -47,17 +47,21 @@
             }
 
             .title {
-                font-size: 84px;
+                font-size: 20px;
+                margin-right: 80px;
             }
 
             .links > a {
                 color: #636b6f;
-                padding: 0 25px;
+                padding: 0 10px;
                 font-size: 13px;
                 font-weight: 600;
                 letter-spacing: .1rem;
                 text-decoration: none;
                 text-transform: uppercase;
+            }
+            body{
+                background-color:rgb(218, 241, 240);
             }
 
             .m-b-md {
@@ -71,7 +75,7 @@
 
 
           <div class="dropdown show float-left">
-  <a class="btn btn-info  btn-sm dropdown-toggle" href="#" 
+  <a class="btn  btn-sm dropdown-toggle" href="#" 
   role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
   Languages
   </a>
@@ -110,11 +114,17 @@
             @endif
             <div class="content">
                 <div class="title m-b-md">
-                    {{__('Laravel')}}
+                    <div class="c-sidebar-brand d-lg-down-none">
+                        <svg class="c-sidebar-brand-full" width="500" height="100" alt="CoreUI Logo">
+                          <use xlink:href="{{asset('assets/brand/coreui.svg#full')}}"></use>
+                        </svg>
+                        <div >
+                            <a class="btn btn-primary" href="{{route('homapage')}}">Home Page</a>
+                        </div> 
+                      </div>
+                     
                 </div>
-                <div class="links">
-                    <a href="{{route('homapage')}}">Home Page</a>
-                </div>
+                
             </div>
         </div>
         
