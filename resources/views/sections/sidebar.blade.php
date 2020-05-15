@@ -15,8 +15,8 @@
           <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="index.html">
               <svg class="c-sidebar-nav-icon">
                 <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-speedometer')}}"></use>
-              </svg> Dashboard<span class="badge badge-info">NEW</span></a></li>
-          <li class="c-sidebar-nav-title">Theme</li>
+              </svg> {{__('sidebar.Dashboard')}}<span class="badge badge-info">{{__('sidebar.NEW')}}</span></a></li>
+          <li class="c-sidebar-nav-title">{{__('sidebar.Theme')}}</li>
 
 
 
@@ -24,7 +24,7 @@
             <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{route('posts')}}">
               <svg class="c-sidebar-nav-icon">
                 <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-drop1')}}"></use>
-              </svg> Posts</a></li>
+              </svg> {{__('sidebar.Posts')}}</a></li>
 
 
 
@@ -32,12 +32,12 @@
           <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="typography.html">
               <svg class="c-sidebar-nav-icon">
                 <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-pencil')}}"></use>
-              </svg> Typography</a></li>
-          <li class="c-sidebar-nav-title">Components</li>
+              </svg>{{__('sidebar.Typography')}} </a></li>
+          <li class="c-sidebar-nav-title">{{__('sidebar.Components')}}</li>
           <li class="c-sidebar-nav-item c-sidebar-nav-dropdown"><a class="c-sidebar-nav-link c-sidebar-nav-dropdown-toggle" href="#">
               <svg class="c-sidebar-nav-icon">
                 <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-puzzle')}}"></use>
-              </svg> Base</a>
+              </svg>{{__('sidebar.Base')}} </a>
             <ul class="c-sidebar-nav-dropdown-items">
               <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="base/breadcrumb.html"><span class="c-sidebar-nav-icon"></span> Breadcrumb</a></li>
               <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="base/cards.html"><span class="c-sidebar-nav-icon"></span> Cards</a></li>

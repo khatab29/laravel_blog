@@ -18,7 +18,7 @@
       <div class="dropdown show ">
         <a class="btn btn-info  btn-sm dropdown-toggle" href="#" 
         role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Languages
+          {{__('header.Languages')}}
         </a>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
           
@@ -36,9 +36,9 @@
 
 
 
-      <li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="#">Dashboard</a></li>
-      <li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="#">Users</a></li>
-      <li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="#">Settings</a></li>
+      <li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="#">{{__('header.Dashboard')}}</a></li>
+      <li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="#">{{__('header.Users')}}</a></li>
+      <li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="#">{{__('header.Settings')}}</a></li>
     </ul>
     <ul class="c-header-nav ml-auto mr-4">
       <li class="c-header-nav-item d-md-down-none mx-2"><a class="c-header-nav-link" href="#">
@@ -96,9 +96,9 @@
     <div class="c-subheader px-3">
       <!-- Breadcrumb-->
       <ol class="breadcrumb border-0 m-0">
-        <li class="breadcrumb-item"><a href="{{route('homapage')}}">Home</a></li>
-        <li class="breadcrumb-item"><a href="#">Admin</a></li>
-        <li class="breadcrumb-item active">Dashboard</li>
+        <li class="breadcrumb-item"><a href="{{route('homapage')}}">{{__('header.Home')}}</a></li>
+        <li class="breadcrumb-item"><a href="#">{{__('header.Admin')}}</a></li>
+        <li class="breadcrumb-item active">{{__('header.Dashboard')}}</li>
         <!-- Breadcrumb Menu-->
       </ol>
     </div>
