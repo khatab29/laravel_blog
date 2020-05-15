@@ -59,6 +59,7 @@
     <script src="{{asset('vendors/@coreui/coreui/js/coreui.bundle.min.js')}}"></script>
     <!--[if IE]><!-->
     <script src="{{asset('vendors/@coreui/icons/js/svgxuse.min.js')}}"></script>
+    <script src="bootstrap.bundle.min.js / bootstrap.bundle.js"></script>
     <!--<![endif]-->
     @yield('homepage-js')
     @yield('posts-js')

@@ -6,18 +6,36 @@
       <div class="row justify-content-center">
         <div class="col-md-6">
 
-          <ul>
-            @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                <li>
-                    <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
-                        {{ $properties['native'] }}
-                    </a>
-                </li>
-            @endforeach
-        </ul>
-
+     
           <div class="card mx-4">
             <div class="card-body p-4">
+
+
+              <div class="dropdown show float-right ">
+                <a class="btn btn-info  btn-sm dropdown-toggle" href="#" 
+                role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Languages
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <ul>
+                      @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                          <li>
+                              <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                  {{ $properties['native'] }}
+                              </a>
+                          </li>
+                      @endforeach
+                  </ul>
+                </div>
+              </div>
+    
+
+
+
+
+
+
+
               <h1>{{__('register.Register')}}</h1>
               <p class="text-muted">{{__('register.Create your account')}}</p>
 

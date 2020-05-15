@@ -12,7 +12,30 @@
         <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-menu"></use>
       </svg>
     </button>
+
     <ul class="c-header-nav d-md-down-none">
+
+      <div class="dropdown show ">
+        <a class="btn btn-info  btn-sm dropdown-toggle" href="#" 
+        role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Languages
+        </a>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          
+              @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                  <li>
+                      <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                          {{ $properties['native'] }}
+                      </a>
+                  </li>
+              @endforeach
+          
+        </div>
+      </div>
+
+
+
+
       <li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="#">Dashboard</a></li>
       <li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="#">Users</a></li>
       <li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="#">Settings</a></li>
