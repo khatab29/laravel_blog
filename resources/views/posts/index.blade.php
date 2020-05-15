@@ -16,7 +16,7 @@
                     <div style="padding-top:75%">
                       <img src="{{$post->image}}" class="img-fluid rounded img-thumbnail">
                       </div>
-                    <a href="{{route('posts.show',['post' => $post->id])}}"><h3>{{$post->title}}</h3></a>
+                    <a class="button-info" href="{{route('posts.show',['post' => $post->id])}}"><h5>{{$post->title}}</h5></a>
                       <h6>{{$post->summary}}</h6>
                     </div>
                     @endforeach
