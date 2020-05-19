@@ -1,6 +1,6 @@
 <header class="c-header c-header-light c-header-fixed c-header-with-subheader">
 
-  
+  <div class="row col-8">
     <button class="c-header-toggler c-class-toggler d-lg-none mfe-auto" type="button" data-target="#sidebar" data-class="c-sidebar-show">
       <svg class="c-icon c-icon-lg">
         <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-menu')}}"></use>
@@ -19,10 +19,10 @@
 
 
     
-    <div class="row col-4">
+    
     <ul class="c-header-nav d-md-down-none">
       <div class="dropdown show ">
-        <a class="btn btn-info  btn-sm dropdown-toggle" href="#" 
+        <a class="btn   btn-sm dropdown-toggle" href="#" 
         role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           {{__('header.Languages')}}
         </a>
@@ -42,7 +42,7 @@
     </ul>
     </div>
     
-    <div class="row col-7">
+    <div class="row col-4">
     <ul class="c-header-nav ml-auto mr-4">
       <li class="c-header-nav-item d-md-down-none mx-2"><a class="c-header-nav-link" href="#">
           <svg class="c-icon">
@@ -104,11 +104,16 @@
 
     <div class="c-subheader px-3">
       <!-- Breadcrumb-->
+      
       <ol class="breadcrumb border-0 m-0">
         <li class="breadcrumb-item"><a href="{{route('homapage')}}">{{__('header.Home')}}</a></li>
         <li class="breadcrumb-item"><a href="#">{{__('header.Admin')}}</a></li>
         <li class="breadcrumb-item active">{{__('header.Dashboard')}}</li>
         <!-- Breadcrumb Menu-->
       </ol>
+      
+     
     </div>
+
+
   </header>

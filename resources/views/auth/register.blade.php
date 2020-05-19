@@ -7,7 +7,7 @@
         <div class="col-md-6">
           <div class="card mx-4">
             <div class="dropdown show float ">
-              <a class="btn btn-info  btn-sm dropdown-toggle" href="#" 
+              <a class="btn btn-sm dropdown-toggle" href="#" 
               role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Languages
               </a>

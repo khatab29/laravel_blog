@@ -1,9 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Post;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\PostCollection;
+use App\Http\Resources\Post as PostResource ;
 use App\Http\Requests\PostValidation;
 
 
@@ -16,8 +19,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::paginate(20);
-        return view('posts.index',['posts' => $posts]);
+       return new PostCollection(Post::paginate(20));
     }
 
     /**
@@ -36,9 +38,14 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store( Request $request)
     {
-        //
+        return new PostResource(Post::create([
+        'title' => $request->title,
+        'summary' => $request->summary,
+        'image' => $request->image,
+        'content' => $request->content
+        ]));
     }
 
     /**
@@ -49,7 +56,7 @@ class PostController extends Controller
      */
     public function show(post $post)
     {
-       return view('posts.show',['post' => $post]);
+        return new PostResource(Post::find($post));
     }
 
     /**
@@ -60,7 +67,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts.edit', compact('post'));
+        return new PostResource(Post::find($post));
     }
 
     /**
@@ -70,15 +77,16 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(PostValidation  $request, Post $post)
+    public function update(Request $request, Post $post)
     {
-        $validated = $request->validated();
         $post->title = $request->title;
         $post->summary = $request->summary;
         $post->image = $request->image;
         $post->content = $request->content;
         $post->save();
-        return redirect(route('posts.show',['post'=>$post->id]));
+        return new PostResource(Post::find($post));
+         
+         
     }
 
     /**
@@ -90,6 +98,7 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
-        return redirect(route('posts.index'));
+        return new PostResource(Post::find($post));
+
     }
 }

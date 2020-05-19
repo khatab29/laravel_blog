@@ -3,48 +3,55 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+
 use Illuminate\Http\Request;
 use App\Http\Requests\Loginvalidation;
 use Illuminate\Support\Facades\Auth;
-use App\User;
+use APP\Admin;
 
 
 
-class LoginController extends Controller
+
+class AdminLoginController extends Controller
 {
+    
 
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+       $this->middleware('guest:admin')->except('logout');
     }
-
-     
+      
     protected function create()
     {
-        return view('auth.login');   
+        return view('auth.Adminlogin');   
     }
 
 
 
-    protected function login (Loginvalidation $request)
+    protected function Admlogin (Request $request)
     {
-        $validated = $request->validated();
         $credentials = $request->only('email', 'password');
-        if (Auth::attempt($credentials)) {
-            return redirect()->intended(route('homapage'));
+          //Config::get('auth.defaults.guard');
+        //dd($credentials);
+        if (Auth::guard('admin')->attempt($credentials)) {
+          
+            return redirect()->intended('/admin');
         }
-        if ( ! User::where('email', $request->email)->first() ) {
+        if ( ! Admin::where('email', $request->email)->first() ) {
             return redirect()->back()
                 ->withInput()
                 ->withErrors(['email' => [trans('auth.email')],
                 ]);
         }
-        if ( ! User::where('password', $request->password)->first() ) {
+        if ( ! Admin::where('password', $request->password)->first() ) {
             return redirect()->back()
                 ->withInput()
                 ->withErrors(['password' => [trans('auth.password')],
                 ]);
         }  
+        
+        
     }
 
 
@@ -54,11 +61,4 @@ class LoginController extends Controller
         return redirect(route('welcome'));
             
     }
-
-
-    
-
-
-
-
 }

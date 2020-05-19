@@ -1,8 +1,10 @@
 @extends('layouts.admin')
 @section('content')
+<body class="c-app">
 @include('sections.sidebar')
 @include('sections.header')
-      <div class="c-body">
+<body class="c-body">
+
         <main class="c-main">
           <div class="container-fluid">
             <div class="fade-in">

@@ -1,6 +1,9 @@
 <?php
 
+use Illuminate\Contracts\Auth\Guard;
+use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -12,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
 
 Route::group(
     [
@@ -32,13 +37,36 @@ Route::group(
     Route::post('logout','Auth\LoginController@logout')->name('logout');
     Route::get('/reset',function () {return view('auth.passwords.email'); })->name('password.email');
     
-    Route::get('/posts','PostController@index')->name('posts'); 
-    Route::get('/posts/{post}','PostController@show')->name('posts.show');  
-    
 
+
+    Route::get('/posts','PostController@index')->name('posts.index'); 
+    Route::get('/posts/{post}','PostController@show')->name('posts.show');
+    Route::get('/posts/{post}/edit','PostController@edit')->name('posts.edit');
+    Route::PUT('/posts/{post}/update', 'PostController@update')->name('posts.update');
+    Route::delete('/posts/{post}/delete', 'PostController@destroy')->name('posts.destroy');
+
+
+    Route::group(['prefix'=>'admin'],function (){
+        //Config::set('auth.defaults.guard', 'admin');
+        //dd(Config::get('auth.defaults.guard'));
+        Route::get('/','AdminController@index')->name('admin.home');
+        Route::get('/login','Auth\AdminLoginController@create')->name('admin.login');
+        Route::post('login','Auth\AdminLoginController@Admlogin')->name('admin.submit');
+        });
+
+
+    
+        
 
     });
 
+    
+    
+
+    
+    
+
+   
 
 
 /*
