@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Middleware;
+use Illuminate\Support\Facades\Auth;
+
 
 use Closure;
 
-use Auth;
+
 use Illuminate\Support\Facades\Session;
 
 class AuthAdmins
@@ -16,7 +18,7 @@ class AuthAdmins
      * @param  \Closure  $next
      * @return mixed
      */
-    /*
+    
     public function handle($request, Closure $next)
     {
         if (false == Auth::guard('admin')->check()) {
@@ -24,5 +26,5 @@ class AuthAdmins
         }
 
         return $next($request);
-    }*/
+    }
 }

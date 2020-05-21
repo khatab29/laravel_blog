@@ -19,13 +19,15 @@
                             <p>{{$post->content}}.</p>
                             </div>
                     </div>
-               <div class="row"> 
+               <div class="row justify-content-center"> 
             <form action="{{route('posts.destroy',['post'=>$post->id])}}" method="POST">
                 @method('DELETE')
                 @csrf
-                <button class="btn btn-danger" type="submit" onclick="return confirm('Are you sure want to delete this post')">Delete</button>               
+                <button class="btn btn-danger px-lg-5" type="submit" onclick="return confirm('Are you sure want to delete this post')">Delete</button>               
                </form>
-            <a href="{{route('posts.edit',['post'=>$post->id])}}" class="btn btn-info">Edit</a>
+               
+              
+            <a href="{{route('posts.edit',['post'=>$post->id])}}" class="btn btn-info px-lg-5">Edit</a>
                </div>
         </div>
         </div>

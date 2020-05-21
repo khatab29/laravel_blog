@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -24,7 +24,7 @@ class AdminLoginController extends Controller
       
     protected function create()
     {
-        return view('auth.Adminlogin');   
+        return view('auth.AdminLogin');   
     }
 
 

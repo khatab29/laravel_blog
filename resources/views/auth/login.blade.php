@@ -71,7 +71,7 @@
 <button class="btn btn-primary px-4" type="submit">{{__('Login')}}</button>
 </div>
 <div class="col-6 text-right">
-  <a  href="{{ route('password.email') }}" ><span>{{__('Forgot Your Password?')}}</span></a>
+  <a  href="{{ route('password.request') }}" ><span>{{__('Forgot Your Password?')}}</span></a>
 
 </div>
 </div>

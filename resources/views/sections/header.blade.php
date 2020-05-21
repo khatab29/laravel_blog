@@ -22,7 +22,7 @@
     
     <ul class="c-header-nav d-md-down-none">
       <div class="dropdown show ">
-        <a class="btn   btn-sm dropdown-toggle" href="#" 
+        <a class="btn btn-info btn-sm dropdown-toggle" href="#" 
         role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           {{__('header.Languages')}}
         </a>

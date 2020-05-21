@@ -68,10 +68,10 @@
 
 <div class="row">
 <div class="col-6">
-<button class="btn btn-primary px-4" type="submit" name="admin-submit"{{__('Login')}}></button>
+<button class="btn btn-primary px-4" type="submit" name="admin-submit">{{__('Login')}}</button>
 </div>
 <div class="col-6 text-right">
-  <a  href="{{ route('password.email') }}" ><span>{{__('Forgot Your Password?')}}</span></a>
+  <a  href="{{ route('admin.password.request') }}" ><span>{{__('Forgot Your Password?')}}</span></a>
 
 </div>
 </div>

@@ -3,6 +3,7 @@
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers;
 
 
 /*
@@ -21,11 +22,12 @@ use Illuminate\Support\Facades\Route;
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
-        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ],
+        //'verify' => true
     ], function(){
 
 
-    Route::get('/', function () {return view('Welcome');})->name('welcome');
+    Route::get('/', 'PostController@index')->name('posts.index');
     Route::get('/homepage',function () {return view('homepage');})->name('homapage');
     Route::get('/home', 'HomeController@index')->name('home');
 
@@ -35,23 +37,32 @@ Route::group(
     Route::get('/login','Auth\LoginController@create')->name('login');
     Route::post('login','Auth\LoginController@login')->name('login.post');
     Route::post('logout','Auth\LoginController@logout')->name('logout');
-    Route::get('/reset',function () {return view('auth.passwords.email'); })->name('password.email');
+    Route::get('/password/reset','Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+    Route::get('/password/reset', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+    Route::post('/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+    
     
 
 
-    Route::get('/posts','PostController@index')->name('posts.index'); 
+
+     
     Route::get('/posts/{post}','PostController@show')->name('posts.show');
     Route::get('/posts/{post}/edit','PostController@edit')->name('posts.edit');
     Route::PUT('/posts/{post}/update', 'PostController@update')->name('posts.update');
     Route::delete('/posts/{post}/delete', 'PostController@destroy')->name('posts.destroy');
 
 
+
+
     Route::group(['prefix'=>'admin'],function (){
         //Config::set('auth.defaults.guard', 'admin');
         //dd(Config::get('auth.defaults.guard'));
         Route::get('/','AdminController@index')->name('admin.home');
-        Route::get('/login','Auth\AdminLoginController@create')->name('admin.login');
-        Route::post('login','Auth\AdminLoginController@Admlogin')->name('admin.submit');
+        Route::get('/login','Admin\AdminLoginController@create')->name('admin.login');
+        Route::post('login','Admin\AdminLoginController@Admlogin')->name('admin.submit');
+        Route::post('logout','Admin\AdminLoginController@logout')->name('admin.logout');
+        Route::get('/reset', function () {return view('auth.passwords.adminEmail'); })->name('admin.password.request');
+
         });
 
 
