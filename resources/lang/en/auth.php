@@ -17,5 +17,6 @@ return [
     'email' => 'Invalied Email Address',
     'password' => 'Invalied Password',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'InvalidCredentials' => 'Your Credentials Is Invalied'
 
 ];

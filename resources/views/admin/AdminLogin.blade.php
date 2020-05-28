@@ -7,9 +7,10 @@
       <div class="row justify-content-center">
         <div class="col-md-8">
           <div class="card-group">
+
             <div class="card p-4">
               <div class="dropdown show ">
-                <a class="btn   btn-sm dropdown-toggle" href="#" 
+                <a class="btn   btn-sm dropdown-toggle" href="#"
                 role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Languages
                 </a>
@@ -26,12 +27,16 @@
                 </div>
               </div>
               <div class="card-body">
-
                 <h1>{{__('Login')}}</h1>
                 <p class="text-muted">Admin Only Login</p>
 
-<form method="POST" action="{{ route('admin.submit') }}">
+
+<form method="POST" action="{{route('admin.login')}}">
 @csrf
+
+<div>
+
+
 
 <div class="input-group mb-3">
 <div class="input-group-prepend"><span class="input-group-text">
@@ -45,6 +50,7 @@
 </span>
 @enderror
 </div>
+</div>
 
 <div class="input-group mb-4">
 <div class="input-group-prepend"><span class="input-group-text">
@@ -57,6 +63,7 @@
 <strong>{{ $message }}</strong>
 </span>
 @enderror
+</div>
 </div>
 
 <div class="form-check">
@@ -76,13 +83,20 @@
 </div>
 </div>
 </form>
+
+@error('InvalidCredentials')
+<span class="invalid-feedback" role="alert">
+<strong>{{ $message }}</strong>
+</span>
+@enderror
+</div>
+</div>
               </div>
             </div>
-       
+
 
         </div>
       </div>
     </div>
    @endsection
 
-   

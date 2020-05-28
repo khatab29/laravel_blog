@@ -24,9 +24,9 @@ class PostValidation extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|max:25|unique:posts',
-            'summary' => 'required|min:30|max:100',
-            'content' => 'required|min:100|max:600',
+            'title' => 'required|max:35',
+            'summary' => 'required|min:50|max:100',
+            'content' => 'required|min:150|max:600',
             'image' => 'required'
         ];
     }

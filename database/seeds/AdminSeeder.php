@@ -1,7 +1,8 @@
 <?php
-use Illuminate\Support\Facades\Hash;
+
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+
 
 class AdminSeeder extends Seeder
 {
@@ -12,17 +13,20 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('admins')->insert([
-            'name' => 'admin',
-            'email' => 'admin@gmail.com',
-            'password' =>'password',
-        ]);
-
-        DB::table('admins')->insert([
-            'name' => 'super-admin',
-            'email' => 'super-admin@gmail.com',
-            'password' =>Hash::make('passsword'),
-        ]);
-        
+        $admins = [            
+            [ 'name' => 'admin', 'email' => 'admin@admin.com', 'password' => Hash::make('passsword')]
+        ];
+    
+        foreach ($admins as $admin) {
+            App\Admin::create($admin);
+        }
     }
+
+
+
+
+
+
+
+    
 }

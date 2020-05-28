@@ -10,7 +10,7 @@
         <div class="container-fluid">
                 <div id="wrapper">
                     <div id="page" class="container">
-                        
+
                             <div class="title">
                                 <h1 class="center">{{$post->title}}</h1>
                             </div> 

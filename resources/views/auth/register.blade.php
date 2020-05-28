@@ -26,7 +26,7 @@
             <div class="card-body p-4">
               <h1>{{__('register.Register')}}</h1>
               <p class="text-muted">{{__('register.Create your account')}}</p>
-<form method="POST" action="{{ route('register.post') }}">
+<form method="POST" action="{{ route('register') }}">
 @csrf
 
 <div class="input-group mb-3">
@@ -90,7 +90,7 @@
                   <a class="btn btn-block btn-primary" href="{{route('login')}}"><span>{{__('Login')}}</span></a>
                 </div>
                 <div class="col-6">
-                  <a class="btn btn-block btn-primary" href="{{ route('password.email') }}" ><span>{{__('Forgot Your Password?')}}</span></a>
+                  <a class="btn btn-block btn-primary" href="{{ route('password.request') }}" ><span>{{__('Forgot Your Password?')}}</span></a>
                 </div>
               </div>
             </div>

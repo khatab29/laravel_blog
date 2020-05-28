@@ -1,64 +1,67 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\admin;
 
-use App\Http\Controllers\Controller;
+
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use App\Http\Requests\LoginValidation;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\Loginvalidation;
 use Illuminate\Support\Facades\Auth;
-use APP\Admin;
-
-
 
 
 class AdminLoginController extends Controller
 {
-    
+   /*
+    |--------------------------------------------------------------------------
+    | Login Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles authenticating users for the application and
+    | redirecting them to your home screen. The controller uses a trait
+    | to conveniently provide its functionality to your applications.
+    |
+    */
 
     public function __construct()
     {
        $this->middleware('guest:admin')->except('logout');
     }
       
-    protected function create()
+
+    /**
+     * Where to redirect users after login.
+     *
+     * @var string
+     */
+    
+
+
+    public function adminLoginForm()
     {
-        return view('auth.AdminLogin');   
+        return view('admin.AdminLogin');
+
     }
 
 
 
-    protected function Admlogin (Request $request)
+    protected function Adminlogin (LoginValidation $request)
     {
+        $validated = $request->validated();
         $credentials = $request->only('email', 'password');
-          //Config::get('auth.defaults.guard');
-        //dd($credentials);
         if (Auth::guard('admin')->attempt($credentials)) {
-          
-            return redirect()->intended('/admin');
+            return redirect()->intended(route('admin.home'));
         }
-        if ( ! Admin::where('email', $request->email)->first() ) {
-            return redirect()->back()
-                ->withInput()
-                ->withErrors(['email' => [trans('auth.email')],
-                ]);
-        }
-        if ( ! Admin::where('password', $request->password)->first() ) {
-            return redirect()->back()
-                ->withInput()
-                ->withErrors(['password' => [trans('auth.password')],
-                ]);
-        }  
-        
-        
+        return redirect()->back()->withInput()
+        ->withErrors(['password' => [trans('auth.password')],
+        ]);
+
     }
 
 
-    protected function logout()
-    {
-        Auth::logout();
-        return redirect(route('welcome'));
-            
-    }
+
+
+
+
+
 }

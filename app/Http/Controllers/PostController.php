@@ -6,7 +6,6 @@ use App\Post;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostValidation;
 
-
 class PostController extends Controller
 {
     /**
@@ -77,7 +76,8 @@ class PostController extends Controller
         $post->summary = $request->summary;
         $post->image = $request->image;
         $post->content = $request->content;
-        $post->save();
+        $post->save()? $request->session()->flash('message', 'Post '. $post->title .' Was Updated Successfully') :
+        $request->session()->flash('error', 'Operation Failed');
         return redirect(route('posts.show',['post'=>$post->id]));
     }
 
@@ -87,9 +87,10 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy(Post $post, Request $request)
     {
-        $post->delete();
+        $post->delete()? $request->session()->flash('message "', 'Post'. $post->title .'" Was Deleted') :
+        $request-> session()->flash('error', 'Operation Failed');
         return redirect(route('posts.index'));
     }
 }

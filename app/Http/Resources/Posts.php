@@ -21,15 +21,20 @@ class Posts extends JsonResource
     public function toArray( $request)
     {
         
-        return parent::toArray($request);
+        //return parent::toArray($request);
+       //$post =  parent::toArray($request);
+       //unset($post['title']);
+      // return $post;
 
-         /*
+         
          return [
-            'id' => $this->resource->id,
-            'title' => $this->resource->title,
-            'content' => $this->resource->content,
+            'id' => $this->id,
+            'title' => $this->title,
+            'summary'=>$this->summary,
+            'content' => $this->content,
+            'image' => $this->image,
             
-         ];*/
+         ];
         
     }
 }

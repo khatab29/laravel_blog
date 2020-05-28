@@ -7,11 +7,25 @@
 
         <main class="c-main">
           <div class="container-fluid">
+              
+           
+            
             <div class="fade-in">
               <div class="card">
-                <div class="card-header"><h3 >Blog Posts</h3></div>
+                <div class="card-header"><h3 class="text-center">Blog Posts</h3></div>
                 <div class="card-body">
+
+                    @if(session()->has('message'))
+                    
+                    <div class="alert alert-success fade-out" role="alert">
+                        {{ session()->get('message') }}
+                        {{ session()->forget('message') }}
+                      </div>
+                      @endif
+
+                   
                   <div class="row">
+                    
 
                     @foreach ($posts as $post)
                     <div class="col-xl-2 col-md-3 col-sm-4 col-6 mb-4">

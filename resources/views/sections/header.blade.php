@@ -106,7 +106,7 @@
       <!-- Breadcrumb-->
       
       <ol class="breadcrumb border-0 m-0">
-        <li class="breadcrumb-item"><a href="{{route('homapage')}}">{{__('header.Home')}}</a></li>
+        <li class="breadcrumb-item"><a href="">{{__('header.Home')}}</a></li>
         <li class="breadcrumb-item"><a href="#">{{__('header.Admin')}}</a></li>
         <li class="breadcrumb-item active">{{__('header.Dashboard')}}</li>
         <!-- Breadcrumb Menu-->
