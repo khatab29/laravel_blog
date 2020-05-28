@@ -31,9 +31,6 @@ Route::group(['prefix' => 'admin'], function(){
 		Route::get('/', 'admin\AdminController@index')->name('admin.home');
 		Route::get('/login', 'admin\AdminLoginController@adminLoginForm')->name('admin.login.form');
         Route::post('login', 'admin\AdminLoginController@Adminlogin')->name('admin.login');
-
-
-
         Route::post('password/email', 'admin\ForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
         Route::get('password/reset', 'admin\ForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
         Route::post('password/reset','admin\ResetPasswordController@reset')->name('admin.password.update');
@@ -48,11 +45,6 @@ Route::group(['prefix' => 'posts'], function(){
     Route::get('/{post}/edit','PostController@edit')->name('posts.edit');
     Route::PUT('/{post}/update', 'PostController@update')->name('posts.update');
     Route::delete('/{post}/delete', 'PostController@destroy')->name('posts.destroy');
-
-
-
-
-
 });
 
 

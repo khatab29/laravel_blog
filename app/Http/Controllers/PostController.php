@@ -89,7 +89,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post, Request $request)
     {
-        $post->delete()? $request->session()->flash('message "', 'Post'. $post->title .'" Was Deleted') :
+        $post->delete()? $request->session()->flash('success', 'post '.$post->title.' was deleted successfully') :
         $request-> session()->flash('error', 'Operation Failed');
         return redirect(route('posts.index'));
     }
