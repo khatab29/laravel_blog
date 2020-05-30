@@ -54,7 +54,8 @@
 
 
     @yield('content')
-    
+    @include('sweetalert::alert')
+
     <!-- CoreUI and necessary plugins-->
     <script src="{{asset('vendors/@coreui/coreui/js/coreui.bundle.min.js')}}"></script>
     <!--[if IE]><!-->

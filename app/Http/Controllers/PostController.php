@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Post;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostValidation;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class PostController extends Controller
 {
@@ -76,8 +78,8 @@ class PostController extends Controller
         $post->summary = $request->summary;
         $post->image = $request->image;
         $post->content = $request->content;
-        $post->save()? $request->session()->flash('message', 'Post '. $post->title .' Was Updated Successfully') :
-        $request->session()->flash('error', 'Operation Failed');
+        $post->save()? alert()->success($post->title, 'Was Updated Successfully') :
+        alert()->error('Error','Operation Failed');
         return redirect(route('posts.show',['post'=>$post->id]));
     }
 
@@ -89,8 +91,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post, Request $request)
     {
-        $post->delete()? $request->session()->flash('success', 'post '.$post->title.' was deleted successfully') :
-        $request-> session()->flash('error', 'Operation Failed');
+        $post->delete()? alert()->success($post->title, 'Was Deleted Successfully'):
+        alert()->error('Error','Operation Failed');
         return redirect(route('posts.index'));
     }
 }
