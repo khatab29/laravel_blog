@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Mail\GeneratePassword;
 use App\Admin;
 
+
 class AdminsCreate extends Command
 {
     /**
@@ -46,7 +47,7 @@ class AdminsCreate extends Command
 
         $name = $this->argument('name') ?? $this->ask('what is your name ?');
         $email = $this->argument('email') ?? $this->ask('what is your email ?');
-        $this->option('generat')? $password = Hash::make( $faker->password(8)) : $password = $this->ask('what is your password ?');
+        $this->option('generat')? $password=$faker->password(8) : $password=$this->ask('what is your password ?');
         $validator = Validator::make([
             'name' => $name,
             'email' => $email,
@@ -67,8 +68,7 @@ class AdminsCreate extends Command
             $admin = Admin::create([
             'name' =>  $name ,
             'email' => $email,
-            'password' => $password
-
+            'password' => Hash::make($password)
         ]);
             if (!$admin) {
                 $this->error('error opration failed');
@@ -77,7 +77,7 @@ class AdminsCreate extends Command
             $this->info('New Admin ' .$admin->name .' Was Created Successfully');
             if ($this->option('verbose')) {
                 $headers = ['Name', 'Email', 'password'];
-                $data = Admin::where('email', $email)->get(['name','email','password']);
+                $data = [[$name,$email,$password]];
                 $this->table($headers, $data);
             }
 
