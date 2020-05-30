@@ -7,9 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\PostCollection;
 use App\Http\Resources\Posts as PostResource;
-use App\Http\Requests\PostValidation;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\MessageBag;
 
 
 
@@ -44,16 +42,11 @@ class PostController extends Controller
      */
     public function store(Request $request )
     {
-          $validator = Validator::make([
-            'title' => $request->title,
-            'summary' => $request->summary,
-            'content' => $request->content,
-            'image' => $request->image
-        ], [
+          $validator = Validator::make($request->all(),[
             'title' => 'required|max:35',
             'summary' => 'required|min:50|max:100',
             'content' => 'required|min:150|max:600',
-            'image' => ['required']
+            'image' => 'required'
         ]);
         if ($validator->fails()) {
             return $validator->errors()->all();
@@ -97,16 +90,11 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        $validator = Validator::make([
-            'title' => $request->title,
-            'summary' => $request->summary,
-            'content' => $request->content,
-            'image' => $request->image
-        ], [
+        $validator = Validator::make($request->all(), [
             'title' => 'required|max:35',
             'summary' => 'required|min:50|max:100',
             'content' => 'required|min:150|max:600',
-            'image' => ['required']
+            'image' => 'required'
         ]);
         if ($validator->fails()) {
             return $validator->errors()->all();
