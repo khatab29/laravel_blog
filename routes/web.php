@@ -24,7 +24,7 @@ Route::group(
 ], function(){
 
 		Auth::routes();
-		Route::get('/', function () {return view('welcome');});
+		Route::get('/', 'PostController@index')->name('posts.index');
 		Route::get('/home', 'HomeController@index')->name('home');
 
 
@@ -41,8 +41,8 @@ Route::group(['prefix' => 'admin'], function(){
 
 
 Route::group(['prefix' => 'posts'], function(){
-    Route::get('/export', 'FilesController@postsExport')->name('posts.csv');
-	Route::get('/', 'PostController@index')->name('posts.index');
+    Route::get('/export', 'PostController@postsExport')->name('posts.csv');
+	
 	Route::get('/{post}','PostController@show')->name('posts.show');
     Route::get('/{post}/edit','PostController@edit')->name('posts.edit');
     Route::PUT('/{post}/update', 'PostController@update')->name('posts.update');

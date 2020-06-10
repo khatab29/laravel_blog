@@ -7,9 +7,7 @@
 
         <main class="c-main">
           <div class="container-fluid">
-              
-           
-            
+                         
             <div class="fade-in">
               <div class="card">
                 <div class="card-header"><h3 class="text-center">Blog Posts</h3></div>

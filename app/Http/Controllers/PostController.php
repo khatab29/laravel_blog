@@ -6,6 +6,9 @@ use App\Post;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostValidation;
 use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Auth;
+use App\Jobs\PostsExportToCsv;
+
 
 
 class PostController extends Controller
@@ -95,4 +98,51 @@ class PostController extends Controller
         alert()->error('Error','Operation Failed');
         return redirect(route('posts.index'));
     }
+
+
+
+    public function postsExport()
+    {
+        if(!Auth::user()){
+        alert()->error('Error','you are not logged in');
+        return redirect()->back();
+        }
+        $posts = Post::all();
+        $user =  Auth::user();
+        PostsExportToCsv::dispatch($posts, $user)?
+        alert()->success('success', 'an email had been sent to you email address'):
+        alert()->error('Error','Operation Failed');
+        return redirect()->back();
+      
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
