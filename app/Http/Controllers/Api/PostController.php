@@ -42,11 +42,11 @@ class PostController extends Controller
      */
     public function store(Request $request )
     {
-          $validator = Validator::make($request->all(),[
-            'title' => 'required|max:35',
-            'summary' => 'required|min:50|max:100',
-            'content' => 'required|min:150|max:600',
-            'image' => 'required'
+        $validator = Validator::make($request->all(),[
+        'title' => 'required|max:35',
+        'summary' => 'required|min:50|max:100',
+        'content' => 'required|min:150|max:600',
+        'image' => 'required'
         ]);
         if ($validator->fails()) {
             return $validator->errors()->all();
@@ -91,10 +91,10 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $validator = Validator::make($request->all(), [
-            'title' => 'required|max:35',
-            'summary' => 'required|min:50|max:100',
-            'content' => 'required|min:150|max:600',
-            'image' => 'required'
+        'title' => 'required|max:35',
+        'summary' => 'required|min:50|max:100',
+        'content' => 'required|min:150|max:600',
+        'image' => 'required'
         ]);
         if ($validator->fails()) {
             return $validator->errors()->all();

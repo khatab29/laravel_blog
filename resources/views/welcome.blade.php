@@ -119,7 +119,7 @@
                           <use xlink:href="{{asset('assets/brand/coreui.svg#full')}}"></use>
                         </svg>
                         <div >
-                            <a class="btn btn-primary" href="">Home Page</a>
+                            <a class="btn btn-primary" href="{{ route('posts.index') }}">Home Page</a>
                         </div> 
                       </div>
                      

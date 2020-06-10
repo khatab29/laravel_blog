@@ -41,12 +41,15 @@ Route::group(['prefix' => 'admin'], function(){
 
 
 Route::group(['prefix' => 'posts'], function(){
+    Route::get('/export', 'FilesController@postsExport')->name('posts.csv');
 	Route::get('/', 'PostController@index')->name('posts.index');
 	Route::get('/{post}','PostController@show')->name('posts.show');
     Route::get('/{post}/edit','PostController@edit')->name('posts.edit');
     Route::PUT('/{post}/update', 'PostController@update')->name('posts.update');
     Route::delete('/{post}/delete', 'PostController@destroy')->name('posts.destroy');
+    
 });
+
 
 
 

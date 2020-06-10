@@ -33,12 +33,16 @@
                     @endforeach
            
                   </div>
+
+                  <div class="row justify-content-center">
+                    <a href="{{route('posts.csv')}}" class="btn btn-info px-lg-5">Export</a>
+                  </div>
                 </div>
               </div>
-
             </div>
+            <div class="row justify-content-center">
             {{ $posts->links() }}
-
+            </div>
           </div>
         </main>
         
