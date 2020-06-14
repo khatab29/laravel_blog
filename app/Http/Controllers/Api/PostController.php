@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\PostCollection;
 use App\Http\Resources\Posts as PostResource;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Cache;
+
 
 
 
@@ -21,7 +23,13 @@ class PostController extends Controller
      */
     public function index()
     {
-       return new PostCollection(Post::paginate(20));
+        $page = request()->has('page') ? request()->get('page') : 1;
+        // Cache::forget('all-posts' . '_page_' . $page);
+        return Cache::remember('all-posts' . '_page_' . $page, now()->addMinutes(15), function () {
+        return new PostCollection(Post::paginate(20));
+        });
+
+
     }
 
     /**

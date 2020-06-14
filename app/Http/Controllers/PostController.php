@@ -8,6 +8,8 @@ use App\Http\Requests\PostValidation;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
 use App\Jobs\PostsExportToCsv;
+use Illuminate\Support\Facades\Cache;
+
 
 
 
@@ -20,8 +22,12 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::paginate(20);
-        return view('posts.index',['posts' => $posts]);
+        $page = request()->has('page') ? request()->get('page') : 1;
+       //Cache::forget('all-posts' . '_page_' . $page);
+        $posts = Cache::remember('all-posts' . '_page_' . $page, now()->addMinutes(15), function () {
+        return Post::paginate(20);
+        });
+        return view('posts.index',['posts' => $posts])->render();
     }
 
     /**
@@ -113,7 +119,7 @@ class PostController extends Controller
         alert()->success('success', 'an email had been sent to you email address'):
         alert()->error('Error','Operation Failed');
         return redirect()->back();
-      
+
 
 
     }
