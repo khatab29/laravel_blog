@@ -19,7 +19,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
+Route::POST('login', 'Api\auth\loginController@login');
+Route::get('profile', 'Api\auth\loginController@profile');
+Route::POST('logout', 'Api\auth\loginController@logout');
 
 Route::group(['prefix'=>'posts'],function (){
     Route::get('/', 'Api\PostController@index');
@@ -28,7 +30,7 @@ Route::group(['prefix'=>'posts'],function (){
     Route::get('/{post}/edit', 'Api\PostController@edit');
     Route::PUT('/{post}/update', 'Api\PostController@update');
     Route::delete('/{post}/delete', 'Api\PostController@destroy');
-    
-    
-    
+
+
+
     });

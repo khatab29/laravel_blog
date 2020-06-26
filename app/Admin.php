@@ -7,9 +7,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Notifications\AdminResetPasswordNotification;
 use App\Notifications;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
 
-class Admin extends Authenticatable
+
+class Admin extends Authenticatable implements JWTSubject
 {
     protected $guard = 'admin';
 
@@ -47,6 +49,19 @@ class Admin extends Authenticatable
     {
 
         $this->notify(new AdminResetPasswordNotification($token));
+    }
+
+
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+
+    public function getJWTCustomClaims()
+    {
+        return [];
     }
 
 
