@@ -20,18 +20,20 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::group([
 
-    'middleware' => 'api',
-    'prefix' => 'auth'
-
-], function ($router) {
-
+Route::group(['prefix'=>'auth'],function (){
     Route::post('login', 'Api\auth\usersAuthController@login');
     Route::post('logout', 'Api\auth\usersAuthController@logout');
     Route::post('refresh', 'Api\auth\usersAuthController@refresh');
-    Route::post('me', 'Api\auth\usersAuthController@me');
+    Route::get('me', 'Api\auth\usersAuthController@me');
+});
 
+
+Route::group(['prefix'=>'admin'],function (){
+    Route::post('login', 'Api\admins\AdminsAuthController@login');
+    Route::post('logout', 'Api\admins\AdminsAuthController@logout');
+    Route::post('refresh', 'Api\admins\AdminsAuthController@refresh');
+    Route::get('me', 'Api\admins\AdminsAuthController@me');
 });
 
 

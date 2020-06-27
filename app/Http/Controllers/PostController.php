@@ -9,9 +9,12 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
 use App\Jobs\PostsExportToCsv;
 use Illuminate\Support\Facades\Cache;
+use Symfony\Component\HttpFoundation\Response;
 
 
-
+//402b9d5096b480933d68522646eb1bed
+//402b9d5096b480933d68522646eb1bed
+//3b06fd31193fce84fc04dc00b8d7fa98
 
 class PostController extends Controller
 {
@@ -20,14 +23,22 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $page = request()->has('page') ? request()->get('page') : 1;
-       //Cache::forget('all-posts' . '_page_' . $page);
-        $posts = Cache::remember('all-posts' . '_page_' . $page, now()->addMinutes(15), function () {
-        return Post::paginate(20);
+        //Cache::forget($request->fullUrl());
+        $posts = Cache::remember($request->fullUrl(), now()->addMinutes(15), function () {
+           return Post::paginate(20);
         });
-        return view('posts.index',['posts' => $posts])->render();
+       // return view('posts.index',['posts' => $posts])->render();
+
+         return response(view('posts.index',['posts' => $posts])->render())
+            ->header('cache-control',['public','max-age=31536000'])
+            ->header('Expires', now()->addMinutes(315360000));
+
+
+
+
+
     }
 
     /**

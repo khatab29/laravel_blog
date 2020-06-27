@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Cache;
 
 
+//etag: b3989d832143af4c82c7bf0daee1bc78
 
 
 
@@ -21,13 +22,21 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $page = request()->has('page') ? request()->get('page') : 1;
-        // Cache::forget('all-posts' . '_page_' . $page);
-        return Cache::remember('all-posts' . '_page_' . $page, now()->addMinutes(15), function () {
+
+        //Cache::forget($request->fullUrl());
+        /*
+        return Cache::remember($request->fullUrl(), now()->addMinutes(15), function () {
         return new PostCollection(Post::paginate(20));
         });
+        */
+        $response = response(Cache::remember($request->fullUrl(), now()->addMinutes(15), function () {
+            return new PostCollection(Post::paginate(20));
+            }));
+        return $response
+        ->header('Cache-Control', 'public')
+        ->header('etag', md5($response->getContent()));
 
 
     }
