@@ -20,6 +20,21 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
+Route::group([
+
+    'middleware' => 'api',
+    'prefix' => 'auth'
+
+], function ($router) {
+
+    Route::post('login', 'Api\auth\usersAuthController@login');
+    Route::post('logout', 'Api\auth\usersAuthController@logout');
+    Route::post('refresh', 'Api\auth\usersAuthController@refresh');
+    Route::post('me', 'Api\auth\usersAuthController@me');
+
+});
+
+
 
 Route::group(['prefix'=>'posts'],function (){
     Route::get('/', 'Api\PostController@index');
@@ -28,7 +43,7 @@ Route::group(['prefix'=>'posts'],function (){
     Route::get('/{post}/edit', 'Api\PostController@edit');
     Route::PUT('/{post}/update', 'Api\PostController@update');
     Route::delete('/{post}/delete', 'Api\PostController@destroy');
-    
-    
-    
+
+
+
     });
