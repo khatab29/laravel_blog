@@ -15,7 +15,10 @@ use App\Post;
 
 class PostsExportToCsv implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable;
+    use InteractsWithQueue;
+    use Queueable;
+    use SerializesModels;
 
     protected $posts;
     protected $user;
@@ -24,7 +27,7 @@ class PostsExportToCsv implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($posts,$user)
+    public function __construct($posts, $user)
     {
         $this->posts = $posts;
         $this->user = $user;
@@ -40,11 +43,10 @@ class PostsExportToCsv implements ShouldQueue
 
         $file = public_path('\storage\posts.csv');
         $handle = fopen($file, 'w');
-        foreach($this->posts as $post){
-        fputcsv( $handle, $post->toArray(), ',');
+
+        foreach ($this->posts as $post) {
+            fputcsv($handle, $post->toArray(), ',');
         }
-        Mail::to($this->user->email )->send(new PostsExport());
-        
-        
+        Mail::to($this->user->email)->send(new PostsExport());
     }
 }

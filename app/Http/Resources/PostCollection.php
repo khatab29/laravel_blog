@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use App\Post;
+
 class PostCollection extends ResourceCollection
 {
     /**

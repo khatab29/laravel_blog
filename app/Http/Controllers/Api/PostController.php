@@ -10,11 +10,6 @@ use App\Http\Resources\Posts as PostResource;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Cache;
 
-
-//etag: b3989d832143af4c82c7bf0daee1bc78
-
-
-
 class PostController extends Controller
 {
     /**
@@ -24,21 +19,12 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
-
-        //Cache::forget($request->fullUrl());
-        /*
-        return Cache::remember($request->fullUrl(), now()->addMinutes(15), function () {
-        return new PostCollection(Post::paginate(20));
-        });
-        */
         $response = response(Cache::remember($request->fullUrl(), now()->addMinutes(15), function () {
             return new PostCollection(Post::paginate(20));
-            }));
-        return $response
-        ->header('Cache-Control', 'public')
-        ->header('etag', md5($response->getContent()));
-
-
+        }));
+            return $response
+            ->header('Cache-Control', 'public')
+            ->header('etag', md5($response->getContent()));
     }
 
     /**
@@ -57,23 +43,25 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request )
+    public function store(Request $request)
     {
-        $validator = Validator::make($request->all(),[
-        'title' => 'required|max:35',
-        'summary' => 'required|min:50|max:100',
-        'content' => 'required|min:150|max:600',
-        'image' => 'required'
-        ]);
+        $validator = Validator::make($request->all(), [
+            'title' => 'required|max:35',
+            'summary' => 'required|min:50|max:100',
+            'content' => 'required|min:150|max:600',
+            'image' => 'required'
+            ]);
+
         if ($validator->fails()) {
             return $validator->errors()->all();
         }
+
         return new PostResource(Post::create([
-        'title' => $request->title,
-        'summary' => $request->summary,
-        'image' => $request->image,
-        'content' => $request->content
-        ]));
+            'title' => $request->title,
+            'summary' => $request->summary,
+            'image' => $request->image,
+            'content' => $request->content
+            ]));
     }
 
     /**
@@ -134,6 +122,5 @@ class PostController extends Controller
     {
         $post->delete();
         return new PostResource($post);
-
     }
 }

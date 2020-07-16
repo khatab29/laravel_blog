@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Api\admins;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -12,10 +12,7 @@ class AdminsAuthController extends Controller
     public function __construct()
     {
         $this->middleware('auth:admin-api', ['except' => ['login']]);
-        
     }
-
-
 
     protected function respondWithToken($token)
     {
@@ -47,15 +44,13 @@ class AdminsAuthController extends Controller
 
     public function me()
     {
-        
         return response()->json(auth('admin-api')->user());
     }
 
 
-     public function logout()
+    public function logout()
     {
         auth()->logout();
-
         return response()->json(['message' => 'Successfully logged out']);
     }
 
@@ -63,31 +58,4 @@ class AdminsAuthController extends Controller
     {
         return $this->respondWithToken(auth('admin-api')->refresh());
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

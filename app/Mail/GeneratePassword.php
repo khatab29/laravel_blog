@@ -10,7 +10,9 @@ use App\Admin;
 
 class GeneratePassword extends Mailable
 {
-    use Queueable, SerializesModels;
+    use Queueable;
+    use SerializesModels;
+
     public $admin;
 
     /**

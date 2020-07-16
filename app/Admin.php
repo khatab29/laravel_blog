@@ -9,14 +9,11 @@ use App\Notifications\AdminResetPasswordNotification;
 use App\Notifications;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
-
-
 class Admin extends Authenticatable implements JWTSubject
 {
-    protected $guard = 'admin';
-
-
     use Notifiable;
+
+    protected $guard = 'admin';
 
     /**
      * The attributes that are mass assignable.
@@ -47,10 +44,8 @@ class Admin extends Authenticatable implements JWTSubject
 
     public function sendPasswordResetNotification($token)
     {
-
         $this->notify(new AdminResetPasswordNotification($token));
     }
-
 
 
     public function getJWTIdentifier()
@@ -63,15 +58,4 @@ class Admin extends Authenticatable implements JWTSubject
     {
         return [];
     }
-
-
-
-
-
-
-
-
-
-
-
 }

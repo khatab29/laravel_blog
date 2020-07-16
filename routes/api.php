@@ -21,15 +21,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 
-Route::group(['prefix'=>'auth'],function (){
-    Route::post('login', 'Api\auth\usersAuthController@login');
-    Route::post('logout', 'Api\auth\usersAuthController@logout');
-    Route::post('refresh', 'Api\auth\usersAuthController@refresh');
-    Route::get('me', 'Api\auth\usersAuthController@me');
+Route::group(['prefix' => 'auth'], function () {
+    Route::post('login', 'Api\auth\UsersAuthController@login');
+    Route::post('logout', 'Api\auth\UsersAuthController@logout');
+    Route::post('refresh', 'Api\auth\UsersAuthController@refresh');
+    Route::get('me', 'Api\auth\UsersAuthController@me');
 });
 
 
-Route::group(['prefix'=>'admin'],function (){
+Route::group(['prefix' => 'admin'], function () {
     Route::post('login', 'Api\admins\AdminsAuthController@login');
     Route::post('logout', 'Api\admins\AdminsAuthController@logout');
     Route::post('refresh', 'Api\admins\AdminsAuthController@refresh');
@@ -38,14 +38,11 @@ Route::group(['prefix'=>'admin'],function (){
 
 
 
-Route::group(['prefix'=>'posts'],function (){
+Route::group(['prefix' => 'posts'], function () {
     Route::get('/', 'Api\PostController@index');
     Route::POST('/store', 'Api\PostController@store');
     Route::get('/{post}', 'Api\PostController@show');
     Route::get('/{post}/edit', 'Api\PostController@edit');
     Route::PUT('/{post}/update', 'Api\PostController@update');
     Route::delete('/{post}/delete', 'Api\PostController@destroy');
-
-
-
-    });
+});

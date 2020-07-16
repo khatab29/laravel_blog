@@ -9,7 +9,6 @@ use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Password;
 
-
 class ResetPasswordController extends Controller
 {
     /*
@@ -22,29 +21,22 @@ class ResetPasswordController extends Controller
     | explore this trait and override any methods you wish to tweak.
     |
     */
-
     use ResetsPasswords;
 
     public function __construct()
     {
-       $this->middleware('guest:admin');
+        $this->middleware('guest:admin');
     }
-
-
 
     protected function broker()
     {
-     return Password::broker('admins');
+        return Password::broker('admins');
     }
-
-
 
     protected function guard()
     {
         return Auth::guard('admin');
     }
-
-
 
     protected $redirectTo = '/admin';
 
@@ -55,12 +47,4 @@ class ResetPasswordController extends Controller
             ['token' => $token, 'email' => $request->email]
         );
     }
-
-
-
-    
-
-
-
-    
 }

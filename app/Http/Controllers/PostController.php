@@ -11,11 +11,6 @@ use App\Jobs\PostsExportToCsv;
 use Illuminate\Support\Facades\Cache;
 use Symfony\Component\HttpFoundation\Response;
 
-
-//402b9d5096b480933d68522646eb1bed
-//402b9d5096b480933d68522646eb1bed
-//3b06fd31193fce84fc04dc00b8d7fa98
-
 class PostController extends Controller
 {
     /**
@@ -25,20 +20,14 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
-        //Cache::forget($request->fullUrl());
-        $posts = Cache::remember($request->fullUrl(), now()->addMinutes(15), function () {
-           return Post::paginate(20);
+        $posts = Cache::remember($request->fullUrl(), now()->addMinutes(5), function () {
+               return  Post::paginate(20);
         });
-       // return view('posts.index',['posts' => $posts])->render();
 
-         return response(view('posts.index',['posts' => $posts])->render())
-            ->header('cache-control',['public','max-age=31536000'])
-            ->header('Expires', now()->addMinutes(315360000));
+         $response = response(view('posts.index', ['posts' => $posts])->render());
 
-
-
-
-
+            return $response->header('cache-control', 'public')
+                            ->header('etag', md5($response->getContent()));
     }
 
     /**
@@ -70,7 +59,7 @@ class PostController extends Controller
      */
     public function show(post $post)
     {
-       return view('posts.show',['post' => $post]);
+        return view('posts.show', ['post' => $post]);
     }
 
     /**
@@ -91,16 +80,19 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(PostValidation  $request, Post $post)
+    public function update(PostValidation $request, Post $post)
     {
         $validated = $request->validated();
         $post->title = $request->title;
         $post->summary = $request->summary;
         $post->image = $request->image;
         $post->content = $request->content;
-        $post->save()? alert()->success($post->title, 'Was Updated Successfully') :
-        alert()->error('Error','Operation Failed');
-        return redirect(route('posts.show',['post'=>$post->id]));
+
+        if (!$post->save()) {
+            alert()->error('Error', 'Operation Failed');
+        }
+            alert()->success($post->title, 'Was Updated Successfully');
+                 return redirect(route('posts.show', ['post' => $post->id]));
     }
 
     /**
@@ -111,55 +103,28 @@ class PostController extends Controller
      */
     public function destroy(Post $post, Request $request)
     {
-        $post->delete()? alert()->success($post->title, 'Was Deleted Successfully'):
-        alert()->error('Error','Operation Failed');
-        return redirect(route('posts.index'));
+
+        $post->delete() ? alert()->success($post->title, 'Was Deleted Successfully') :
+        alert()->error('Error', 'Operation Failed');
+            return redirect(route('posts.index'));
     }
 
 
 
     public function postsExport()
     {
-        if(!Auth::user()){
-        alert()->error('Error','you are not logged in');
-        return redirect()->back();
+        if (!Auth::user()) {
+            alert()->error('Error', 'you are not logged in');
+                return redirect()->back();
         }
+
         $posts = Post::all();
         $user =  Auth::user();
-        PostsExportToCsv::dispatch($posts, $user)?
-        alert()->success('success', 'an email had been sent to you email address'):
-        alert()->error('Error','Operation Failed');
-        return redirect()->back();
 
-
-
+        if (!PostsExportToCsv::dispatch($posts, $user)) {
+            alert()->error('Error', 'Operation Failed');
+        }
+            alert()->success('success', 'an email had been sent to you email address');
+                return redirect()->back();
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

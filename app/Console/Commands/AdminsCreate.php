@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Validator;
 use App\Mail\GeneratePassword;
 use App\Admin;
 
-
 class AdminsCreate extends Command
 {
     /**
@@ -18,7 +17,8 @@ class AdminsCreate extends Command
      *
      * @var string
      */
-    protected $signature = 'admin:create {name?} {email?} {--g|generat : generate random pasword}';
+    protected $signature = 'admin:create {name?} {email?}
+                            {--g|generat : generate random pasword}';
 
     /**
      * The console command description.
@@ -44,19 +44,23 @@ class AdminsCreate extends Command
      */
     public function handle(Faker $faker)
     {
-
         $name = $this->argument('name') ?? $this->ask('what is your name ?');
         $email = $this->argument('email') ?? $this->ask('what is your email ?');
-        $this->option('generat')? $password=$faker->password(8) : $password=$this->ask('what is your password ?');
-        $validator = Validator::make([
+        $this->option('generat') ? $password = $faker->password(8) : $password = $this->ask('what is your password ?');
+
+        $validator = Validator::make(
+            [
             'name' => $name,
             'email' => $email,
             'password' => $password,
-        ], [
+            ],
+            [
             'name' => ['required'],
             'email' => ['required', 'email', 'unique:admins'],
             'password' => ['required', 'min:8'],
-        ]);
+            ]
+        );
+
         if ($validator->fails()) {
             $this->info('Admin was not created. See error messages below:');
             foreach ($validator->errors()->all() as $error) {
@@ -64,31 +68,28 @@ class AdminsCreate extends Command
             }
             return 1;
         }
-        if ($this->confirm('are you sure you want to add '. $name . 'as admin')) {
-            $admin = Admin::create([
-            'name' =>  $name ,
-            'email' => $email,
-            'password' => Hash::make($password)
-        ]);
+
+        if ($this->confirm('are you sure you want to add ' . $name . 'as admin')) {
+            $admin = Admin::create(
+                [
+                'name' =>  $name ,
+                'email' => $email,
+                'password' => Hash::make($password)
+                ]
+            );
+
             if (!$admin) {
                 $this->error('error opration failed');
             }
+
             Mail::to($admin->email)->send(new GeneratePassword($admin));
-            $this->info('New Admin ' .$admin->name .' Was Created Successfully');
+            $this->info('New Admin ' . $admin->name . ' Was Created Successfully');
+
             if ($this->option('verbose')) {
                 $headers = ['Name', 'Email', 'password'];
                 $data = [[$name,$email,$password]];
                 $this->table($headers, $data);
             }
-
         }
-
-
     }
-
-
-
-
-
-
 }

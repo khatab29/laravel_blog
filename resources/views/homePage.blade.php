@@ -2,11 +2,11 @@
 @section('homepage-style')
 <link href="{{asset('vendors/@coreui/chartjs/css/coreui-chartjs.css" rel="stylesheet')}}">
 @endsection
-@section('content')  
+@section('content')
 <body class="c-app">
-@include('sections.sidebar')      
+@include('sections.sidebar')
 @include('sections.header')
-@include('sections.online-members')
+@include('sections.online_members')
 @include('sections.traffic-chart')
 @include('sections.feedback')
 @include('sections.traffic')

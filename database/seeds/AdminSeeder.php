@@ -13,8 +13,8 @@ class AdminSeeder extends Seeder
      */
     public function run()
     {
-        $admins = [            
-            [ 'name' => 'admin', 'email' => 'admin@admin.com', 'password' => Hash::make('passsword')]
+        $admins = [
+            [ 'name' => 'admin', 'email' => 'admin@admin.com', 'password' => Hash::make('password')]
         ];
     
         foreach ($admins as $admin) {

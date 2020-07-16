@@ -7,14 +7,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
-
-
-class usersAuthController extends Controller
+class UsersAuthController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth:api', ['except' => ['login']]);
-        
     }
 
     protected function respondWithToken($token)
@@ -46,12 +43,11 @@ class usersAuthController extends Controller
 
     public function me()
     {
-        if(!auth('api')->user()){
-            return response()->json(['error' => 'Unauthorized']); 
+        if (!auth('api')->user()) {
+            return response()->json(['error' => 'Unauthorized']);
         }
         return response()->json(auth('api')->user());
     }
-
 
     public function logout()
     {
@@ -65,13 +61,4 @@ class usersAuthController extends Controller
     {
         return $this->respondWithToken(auth('api')->refresh());
     }
-
-
-
-   
-
-
-
-
-
 }
