@@ -10,15 +10,14 @@ use Illuminate\Support\Facades\Validator;
 use App\Mail\GeneratePassword;
 use App\Admin;
 
-class AdminsCreate extends Command
+class AdminCreate extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'admin:create {name?} {email?}
-                            {--g|generat : generate random pasword}';
+    protected $signature = 'make:admin {name?} {email?} {--g|generat : generate random pasword}';
 
     /**
      * The console command description.
@@ -46,7 +45,8 @@ class AdminsCreate extends Command
     {
         $name = $this->argument('name') ?? $this->ask('what is your name ?');
         $email = $this->argument('email') ?? $this->ask('what is your email ?');
-        $this->option('generat') ? $password = $faker->password(8) : $password = $this->ask('what is your password ?');
+        $this->option('generat') ? $password = $faker->password(8) :
+                                   $password = $this->ask('what is your password ?');
 
         $validator = Validator::make(
             [
